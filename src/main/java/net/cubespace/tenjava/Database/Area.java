@@ -24,6 +24,9 @@ public class Area {
     public Integer Point2Y = 0;
     public Integer Point2Z = 0;
 
+    //Name of the Area
+    public String AreaName = "";
+
     /**
      * Load a new Area Database Entry based on the name given
      *
@@ -69,14 +72,18 @@ public class Area {
 
             //Check if file exists
             if(!areaFile.exists()) {
-                if(!areaFile.getParentFile().mkdirs() || !areaFile.createNewFile()) {
+                if((!areaFile.getParentFile().exists() && !areaFile.getParentFile().mkdirs()) || !areaFile.createNewFile()) {
                     return false;
                 }
             }
 
             //Create a new FileWriter and take the Dump from YAML and write it into the File
             FileWriter fileWriter = new FileWriter(areaFile);
-            fileWriter.write(yaml.dump(area));
+            String yamlOutput = yaml.dump(area);
+            System.out.println(yamlOutput);
+
+            fileWriter.write(yamlOutput);
+            fileWriter.close();
 
             return true;
         } catch (IOException e) {

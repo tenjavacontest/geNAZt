@@ -38,6 +38,8 @@ public class AreaManager {
             if(loadedArea != null)
                 loadedAreas.add(loadedArea);
         }
+
+        System.out.println(loadedAreas.size());
     }
 
     public void createArea(String name, Vector point1, Vector point2) {

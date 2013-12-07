@@ -1,5 +1,6 @@
 package net.cubespace.tenjava;
 
+import net.cubespace.tenjava.Command.SetupArea;
 import net.cubespace.tenjava.Manager.AreaManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,6 +19,9 @@ public class TenJavaPlugin extends JavaPlugin {
 
         //Init all Managers
         areaManager = new AreaManager(this);
+
+        //Setup Commands
+        getCommand("setuparea").setExecutor(new SetupArea());
     }
 
     @Override
