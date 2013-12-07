@@ -25,7 +25,9 @@ public class EntityManager {
             @Override
             public void run() {
                 for(Map.Entry<Player, Entity> playerEntityEntry : playerEntityHashMap.entrySet()) {
-                    playerEntityEntry.getValue().teleport(playerEntityEntry.getKey());
+                    if(!TenJavaPlugin.getFightManager().isInFight(playerEntityEntry.getValue())) {
+                        playerEntityEntry.getValue().teleport(playerEntityEntry.getKey());
+                    }
                 }
             }
         }, 40, 5);
@@ -48,5 +50,9 @@ public class EntityManager {
                 }
             }, 5*20);
         }
+    }
+
+    public Entity getEntity(Player player) {
+        return playerEntityHashMap.get(player);
     }
 }
