@@ -12,8 +12,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class PlayerJoin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if(TenJavaPlugin.getMonsterManager().hasMonster(event.getPlayer())) {
-
+        if(!TenJavaPlugin.getMonsterManager().hasMonster(event.getPlayer())) {
+            TenJavaPlugin.getMonsterManager().createNewMonster(event.getPlayer(), TenJavaPlugin.getConfigManager().getExact(0));
         }
+
+        TenJavaPlugin.getEntityManager().spawnMonster(event.getPlayer());
     }
 }

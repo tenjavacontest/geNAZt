@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * @author geNAZt (fabian.fassbender42@googlemail.com)
@@ -40,7 +41,20 @@ public class MonsterManager {
         return playerHasMonster.containsKey(player.getName());
     }
 
-    public void createNewMonster(Player player) {
+    public void createNewMonster(Player player, LinkedHashMap configurationSection) {
+        Monster newMonster = new Monster();
+        newMonster.evolution = 0;
+        newMonster.level = 1;
+        newMonster.health = (Integer) configurationSection.get("health") * (Double) configurationSection.get("healthModifier");
+        newMonster.damage = (Integer) configurationSection.get("damage") * (Double) configurationSection.get("damageModifier");
+        newMonster.exp = 0;
+        newMonster.player = player.getName();
+        newMonster.save();
 
+        playerHasMonster.put(player.getName(), newMonster);
+    }
+
+    public Monster getMonster(Player player) {
+        return playerHasMonster.get(player.getName());
     }
 }

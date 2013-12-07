@@ -1,20 +1,34 @@
 package net.cubespace.tenjava.Manager;
 
 import net.cubespace.tenjava.TenJavaPlugin;
-import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
 
 /**
  * @author geNAZt (fabian.fassbender42@googlemail.com)
  * @date Last changed: 07.12.13 19:04
  */
 public class ConfigManager {
-    private ArrayList<ConfigurationSection> evolutions = new ArrayList<ConfigurationSection>();
+    private ArrayList<LinkedHashMap> evolutions = new ArrayList<LinkedHashMap>();
 
     public ConfigManager() {
-        List<ConfigurationSection> configurationSectionList = (List<ConfigurationSection>) TenJavaPlugin.getInstance().getConfig().getList("Monsters");
-        System.out.println(configurationSectionList.size());
+        evolutions = (ArrayList<LinkedHashMap>) TenJavaPlugin.getInstance().getConfig().getList("Monsters");
+    }
+
+    public LinkedHashMap getNext(int nextEvolution) {
+        if(evolutions.size() > nextEvolution) {
+            return evolutions.get(nextEvolution+1);
+        }
+
+        return null;
+    }
+
+    public LinkedHashMap getExact(int evolution) {
+        if(evolutions.size() >= evolution) {
+            return evolutions.get(evolution);
+        }
+
+        return null;
     }
 }

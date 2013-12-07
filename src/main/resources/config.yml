@@ -1,7 +1,7 @@
 Monsters:
   - entity: Chicken
     health: 10
-    healthModifier: 2
+    healthModifier: 2.0
     damage: 2
     damageModifier: 1.4
     neededLevel: 0

@@ -1,10 +1,8 @@
 package net.cubespace.tenjava;
 
 import net.cubespace.tenjava.Command.Fight;
-import net.cubespace.tenjava.Manager.ConfigManager;
-import net.cubespace.tenjava.Manager.FightManager;
-import net.cubespace.tenjava.Manager.MonsterManager;
-import net.cubespace.tenjava.Manager.PlayerManager;
+import net.cubespace.tenjava.Listener.PlayerJoin;
+import net.cubespace.tenjava.Manager.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -17,6 +15,8 @@ public class TenJavaPlugin extends JavaPlugin {
     private static PlayerManager playerManager;
     private static FightManager fightManager;
     private static MonsterManager monsterManager;
+    private static ConfigManager configManager;
+    private static EntityManager entityManager;
 
     @Override
     public void onEnable() {
@@ -30,10 +30,14 @@ public class TenJavaPlugin extends JavaPlugin {
         playerManager = new PlayerManager();
         fightManager = new FightManager();
         monsterManager = new MonsterManager();
-        new ConfigManager();
+        configManager = new ConfigManager();
+        entityManager = new EntityManager();
 
         //Setup Commands
         getCommand("fight").setExecutor(new Fight());
+
+        //Register Listener
+        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
     }
 
     @Override
@@ -55,5 +59,13 @@ public class TenJavaPlugin extends JavaPlugin {
 
     public static MonsterManager getMonsterManager() {
         return monsterManager;
+    }
+
+    public static ConfigManager getConfigManager() {
+        return configManager;
+    }
+
+    public static EntityManager getEntityManager() {
+        return entityManager;
     }
 }
