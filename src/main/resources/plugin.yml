@@ -1,0 +1,4 @@
+name: ten.java.theme2
+main: net.cubespace.tenjava.TenJavaPlugin
+description: Secret things and stuff
+version: 0.1.0
