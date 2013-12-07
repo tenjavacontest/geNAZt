@@ -3,8 +3,8 @@ main: net.cubespace.tenjava.TenJavaPlugin
 description: Secret things and stuff
 version: 0.1.0
 commands:
-    setuparea:
-        description: Setup a new Area
-        usage: "Usage: /setuparea"
-        permission: efight.command.setuparea
-        permission-message: You can't setup Areas.
+    fight:
+        description: Send an invitation to another Player
+        usage: "Usage: /fight"
+        permission: efight.command.fight
+        permission-message: You can't fight other People.

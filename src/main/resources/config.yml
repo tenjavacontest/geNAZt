@@ -1,0 +1,13 @@
+Monsters:
+  - entity: Chicken
+    health: 10
+    healthModifier: 2
+    damage: 2
+    damageModifier: 1.4
+    neededLevel: 0
+  - entity: Zombie
+    health: 25
+    healthModifier: 2.4
+    damage: 4
+    damageModifier: 1.7
+    neededLevel: 6
