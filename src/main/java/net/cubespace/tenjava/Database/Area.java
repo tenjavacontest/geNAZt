@@ -80,7 +80,6 @@ public class Area {
             //Create a new FileWriter and take the Dump from YAML and write it into the File
             FileWriter fileWriter = new FileWriter(areaFile);
             String yamlOutput = yaml.dump(area);
-            System.out.println(yamlOutput);
 
             fileWriter.write(yamlOutput);
             fileWriter.close();

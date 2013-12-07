@@ -7,7 +7,6 @@ import org.bukkit.util.Vector;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.logging.Level;
 
 /**
@@ -16,11 +15,13 @@ import java.util.logging.Level;
  */
 public class AreaManager {
     public ArrayList<Area> loadedAreas = new ArrayList<Area>();
-    public HashMap<Area, Player> playersInArea = new HashMap<Area, Player>();
 
-    public AreaManager(TenJavaPlugin plugin) {
+    /**
+     * Load all Areas on plugin init
+     */
+    public AreaManager() {
         //Check for Areas
-        File databaseFolder = new File(plugin.getDataFolder(), "database" + File.separator + "areas");
+        File databaseFolder = new File(TenJavaPlugin.getInstance().getDataFolder(), "database" + File.separator + "areas");
         if(!databaseFolder.exists()) {
             return;
         }
@@ -38,10 +39,15 @@ public class AreaManager {
             if(loadedArea != null)
                 loadedAreas.add(loadedArea);
         }
-
-        System.out.println(loadedAreas.size());
     }
 
+    /**
+     * Create a new Area and save it as a File
+     *
+     * @param name The name of the Area
+     * @param point1 First Point of the Area
+     * @param point2 Second Point of the Area
+     */
     public void createArea(String name, Vector point1, Vector point2) {
         //Check if there is an Area
         for(Area area : loadedAreas) {
@@ -69,5 +75,30 @@ public class AreaManager {
         newArea.Point2Z = point2.getBlockZ();
 
         Area.save(newArea, name);
+    }
+
+    private Area getVectorInArea(Vector checkVector) {
+        for(Area area : loadedAreas) {
+            if(area.Point1X <= checkVector.getBlockX() &&
+               area.Point1Y <= checkVector.getBlockY() &&
+               area.Point1Z <= checkVector.getBlockZ() &&
+               area.Point2X >= checkVector.getBlockX() &&
+               area.Point2Y >= checkVector.getBlockY() &&
+               area.Point2Z >= checkVector.getBlockZ()) {
+                return area;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Get the Area where the Player is standing in
+     *
+     * @param player
+     * @return
+     */
+    public Area getAreaForPlayer(Player player) {
+        return getVectorInArea(player.getLocation().toVector());
     }
 }
