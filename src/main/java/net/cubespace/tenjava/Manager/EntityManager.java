@@ -55,4 +55,9 @@ public class EntityManager {
     public Entity getEntity(Player player) {
         return playerEntityHashMap.get(player);
     }
+
+    public void removeEntity(Player player) {
+        playerEntityHashMap.get(player).remove();
+        playerEntityHashMap.remove(player);
+    }
 }

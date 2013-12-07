@@ -15,5 +15,8 @@ public class PlayerQuit implements Listener {
         if(TenJavaPlugin.getPlayerManager().hasInvitation(event.getPlayer())) {
             TenJavaPlugin.getPlayerManager().cancelInvitation(event.getPlayer());
         }
+
+        TenJavaPlugin.getEntityManager().removeEntity(event.getPlayer());
+        TenJavaPlugin.getFightManager().cancelFight(event.getPlayer());
     }
 }

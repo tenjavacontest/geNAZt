@@ -2,6 +2,7 @@ package net.cubespace.tenjava;
 
 import net.cubespace.tenjava.Command.Fight;
 import net.cubespace.tenjava.Listener.PlayerJoin;
+import net.cubespace.tenjava.Listener.PlayerQuit;
 import net.cubespace.tenjava.Manager.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,6 +39,7 @@ public class TenJavaPlugin extends JavaPlugin {
 
         //Register Listener
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuit(), this);
     }
 
     @Override
