@@ -1,0 +1,32 @@
+# Java
+## Java compiled Classes
+*.class
+
+## Package Files
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+
+# IntelliJ
+
+## Directory-based project format
+.idea/
+
+## File-based project format
+*.ipr
+*.iws
+*.iml
+
+## Additional for IntelliJ
+out/
+
+# Bukkit
+## Testing Server
+server/
